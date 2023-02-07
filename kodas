@@ -1,6 +1,9 @@
 #include <iostream>
+
 #include <conio.h>
+
 #include <windows.h>
+
 #include <dos.h>
 
 using namespace std;
@@ -10,295 +13,280 @@ COORD CursorPosition;
 int LIVES = 3;
 bool lvl = 1;
 
-void CursorPositionas(int x, int y){
-	CursorPosition.X = x;
-	CursorPosition.Y = y;
-	SetConsoleCursorPosition(console, CursorPosition);
+void CursorPositionas(int x, int y) {
+  CursorPosition.X = x;
+  CursorPosition.Y = y;
+  SetConsoleCursorPosition(console, CursorPosition);
 }
 
-class Point{
-	private:
-		int x;
-		int y;
-	public:
-		Point(){
-			x = y = 10;
-		}
-		Point(int x, int y){
-			this -> x = x;
-			this -> y = y;
-		}
-		void SetPoint(int x, int y){
-			this -> x = x;
-			this -> y = y;
-		}
-		int GetX(){
-			return x;
-		}
-		int GetY(){
-			return y;
-		}
-		void MoveUp(){
-		    if(y<=0){
-                y=16;
-		    }
-            y--;
-		}
-		void MoveDown(){
-		    if(y>16){
-                    lvl = !lvl;
-                y=0;
-		    }
-            y++;
-		}
-		void MoveLeft(){
-		    if(x<=0){
-            lvl = !lvl;
-                x=32;
-		    }
-			x--;
-		}
-		void MoveRight(){
-		    if(x>32){
-                x=0;
-                lvl = !lvl;
+class Point {
+  private: int x;
+  int y;
+  public: Point() {
+    x = y = 10;
+  }
+  Point(int x, int y) {
+    this -> x = x;
+    this -> y = y;
+  }
+  void SetPoint(int x, int y) {
+    this -> x = x;
+    this -> y = y;
+  }
+  int GetX() {
+    return x;
+  }
+  int GetY() {
+    return y;
+  }
+  void MoveUp() {
+    if (y <= 0) {
+      y = 16;
+    }
+    y--;
+  }
+  void MoveDown() {
+    if (y > 16) {
+      lvl = !lvl;
+      y = 0;
+    }
+    y++;
+  }
+  void MoveLeft() {
+    if (x <= 0) {
+      lvl = !lvl;
+      x = 32;
+    }
+    x--;
+  }
+  void MoveRight() {
+    if (x > 32) {
+      x = 0;
+      lvl = !lvl;
 
-		    }
-			x++;
-		}
-		void DrawMoob(){
-			CursorPositionas(x,y);
-            cout<<"*";
-		}
-		void DrawPlayer(){
-			CursorPositionas(x,y);
-			cout << "o";
-		}
-        void DrawEnemy(){
-			CursorPositionas(x,y);
-			cout << "O";
-		}
-		void DrawMap(){
-            if(lvl){
-            for(int i = 0; i < 17; i++){
-                if(i==9) i = 13;
-                CursorPositionas(33,i);
-                cout << "X";
-                CursorPositionas(0,i);
-                cout << "X";
-			}
-			for(int i = 0; i < 20; i++){
-                CursorPositionas(i,17);
-                cout << "X";
-                CursorPositionas(i,0);
-                cout << "X";
-			}
-            }
-            else{
-                for(int i = 0; i < 17; i++){
-                if(i==9) i = 13;
-                CursorPositionas(17,i);
-                cout << "X";
-                CursorPositionas(0,i);
-                cout << "X";
-			}
-			for(int i = 0; i < 33; i++){
-                CursorPositionas(i,17);
-                cout << "X";
-                CursorPositionas(i,0);
-                cout << "X";
-			}
-            }
+    }
+    x++;
+  }
+  void DrawMoob() {
+    CursorPositionas(x, y);
+    cout << "*";
+  }
+  void DrawPlayer() {
+    CursorPositionas(x, y);
+    cout << "o";
+  }
+  void DrawEnemy() {
+    CursorPositionas(x, y);
+    cout << "O";
+  }
+  void DrawMap() {
+    if (lvl) {
+      for (int i = 0; i < 17; i++) {
+        if (i == 9) i = 13;
+        CursorPositionas(33, i);
+        cout << "X";
+        CursorPositionas(0, i);
+        cout << "X";
+      }
+      for (int i = 0; i < 20; i++) {
+        CursorPositionas(i, 17);
+        cout << "X";
+        CursorPositionas(i, 0);
+        cout << "X";
+      }
+    } else {
+      for (int i = 0; i < 17; i++) {
+        if (i == 9) i = 13;
+        CursorPositionas(17, i);
+        cout << "X";
+        CursorPositionas(0, i);
+        cout << "X";
+      }
+      for (int i = 0; i < 33; i++) {
+        CursorPositionas(i, 17);
+        cout << "X";
+        CursorPositionas(i, 0);
+        cout << "X";
+      }
+    }
 
-		}
+  }
 };
 
-class Player{
-	private:
-		Point * cell;
-		char dir;
-	public:
-		Player(){
-			cell = new Point(10,10);
-		}
+class Player {
+  private: Point * cell;
+  char dir;
+  public: Player() {
+    cell = new Point(10, 10);
+  }
 
-		void TurnUp(){
-			dir = 'w';
-		}
-		void TurnDown(){
-			dir = 's';
-		}
-		void TurnLeft(){
-			dir = 'a';
-		}
-		void TurnRight(){
-			dir = 'd';
-		}
-		void Move(){
-			system("cls");
+  void TurnUp() {
+    dir = 'w';
+  }
+  void TurnDown() {
+    dir = 's';
+  }
+  void TurnLeft() {
+    dir = 'a';
+  }
+  void TurnRight() {
+    dir = 'd';
+  }
+  void Move() {
+    system("cls");
 
-            switch(dir){
-				case 'w':
-					cell->MoveUp();
-					break;
-				case 's':
-					cell->MoveDown();
-					break;
-				case 'a':
-					cell->MoveLeft();
-					break;
-				case 'd':
-					cell->MoveRight();
-					break;
-			}
+    switch (dir) {
+    case 'w':
+      cell -> MoveUp();
+      break;
+    case 's':
+      cell -> MoveDown();
+      break;
+    case 'a':
+      cell -> MoveLeft();
+      break;
+    case 'd':
+      cell -> MoveRight();
+      break;
+    }
 
-		// with wall
-			    if(lvl){
-                    for(int i = 0; i < 17; i++){
-                            if(i==9) i = 13;
-                            if(cell->GetX() == 33 && cell->GetY() == i || cell->GetX() == 0 && cell->GetY() == i){
-                                LIVES=0;
-                        }
-                    }
-                    for(int i = 0; i < 20; i++){
-                            if(cell->GetX() == i && cell->GetY() == 17 || cell->GetX() == i && cell->GetY() == 0){
-                                LIVES=0;
-                        }
-                    }
-                }
-
-                else{
-                        for(int i = 0; i < 17; i++){
-                                if(i==9) i = 13;
-                                if(cell->GetX() == 17 && cell->GetY() == i || cell->GetX() == 0 && cell->GetY() == i){
-                                    LIVES=0;
-                                }
-                        }
-                        for(int i = 0; i < 33; i++){
-                            if(cell->GetX() == i && cell->GetY() == 17 || cell->GetX() == i && cell->GetY() == 0){
-                                LIVES=0;
-                            }
-                        }
-                }
-        cell->DrawMap();
-        cell->DrawPlayer();
-        Sleep(100);
-		}
-		int getXs(){
-            return cell->GetX();
-		}
-        int getYs(){
-            return cell->GetY();
-		}
-};
-
-class Enemy{
-	private:
-		Point * enemycell;
-	public:
-		Enemy(){
-			enemycell = new Point(rand()%32,rand()%16);
-		}
-		void EnemyMove(int cellX, int cellY){
-            if(rand()%17){
-               switch(1){
-                case 1:
-                    if(cellX > enemycell->GetX()){
-                        enemycell->MoveRight();
-                        break;
-                    }
-                    else if(cellX < enemycell->GetX()){
-                        enemycell->MoveLeft();
-                        break;
-                    }
-                    else{
-                        if(cellY > enemycell->GetY()){
-                            enemycell->MoveDown();
-                            break;
-                        }
-                        else if (cellY < enemycell->GetY()){
-                            enemycell->MoveUp();
-                            break;
-                        }
-                    }
-                case 2:
-                    if(cellY < enemycell->GetY()){
-                        enemycell->MoveDown();
-                        break;
-                    }
-                    else if (cellY > enemycell->GetY()){
-                        enemycell->MoveUp();
-                        break;
-                    }
-                    else{
-                        if(cellX < enemycell->GetX()){
-                            enemycell->MoveRight();
-                            break;
-                        }
-                        else if(cellX > enemycell->GetX()){
-                            enemycell->MoveLeft();
-                            break;
-                        }
-                    }
-                }}
-
-			if((cellX == enemycell->GetX()) && (enemycell->GetY() == cellY)){
-				LIVES=0;
-			}
-
-
-            enemycell->DrawEnemy();
-		}
-};
-
-int main(){
-    cout << "[PRESS wsad TO START GAME]";
-	Player player;
-	Enemy enemy, enee;
-	char op = 'l';
-	do{
-        if(!LIVES){
-            system("cls");
-            cout << "[GAMEOVER]";
-            Sleep(3000);
-            cout << "[3..]";
-            Sleep(1000);
-            cout << "[2..]";
-            Sleep(1000);
-            cout << "[1..]";
-            Sleep(1000);
-            system("cls");
-            cout << "[PRESS wsad TO START GAME]";
-            LIVES = 3;
+    // with wall
+    if (lvl) {
+      for (int i = 0; i < 17; i++) {
+        if (i == 9) i = 13;
+        if (cell -> GetX() == 33 && cell -> GetY() == i || cell -> GetX() == 0 && cell -> GetY() == i) {
+          LIVES = 0;
         }
-		if(kbhit()){
-			op = getch();
+      }
+      for (int i = 0; i < 20; i++) {
+        if (cell -> GetX() == i && cell -> GetY() == 17 || cell -> GetX() == i && cell -> GetY() == 0) {
+          LIVES = 0;
+        }
+      }
+    } else {
+      for (int i = 0; i < 17; i++) {
+        if (i == 9) i = 13;
+        if (cell -> GetX() == 17 && cell -> GetY() == i || cell -> GetX() == 0 && cell -> GetY() == i) {
+          LIVES = 0;
+        }
+      }
+      for (int i = 0; i < 33; i++) {
+        if (cell -> GetX() == i && cell -> GetY() == 17 || cell -> GetX() == i && cell -> GetY() == 0) {
+          LIVES = 0;
+        }
+      }
+    }
+    cell -> DrawMap();
+    cell -> DrawPlayer();
+    Sleep(100);
+  }
+  int getXs() {
+    return cell -> GetX();
+  }
+  int getYs() {
+    return cell -> GetY();
+  }
+};
 
-            switch(op){
-                case 'w':
-                    player.TurnUp();
-                    break;
+class Enemy {
+  private: Point * enemycell;
+  public: Enemy() {
+    enemycell = new Point(rand() % 32, rand() % 16);
+  }
+  void EnemyMove(int cellX, int cellY) {
+    if (rand() % 17) {
+      switch (1) {
+      case 1:
+        if (cellX > enemycell -> GetX()) {
+          enemycell -> MoveRight();
+          break;
+        } else if (cellX < enemycell -> GetX()) {
+          enemycell -> MoveLeft();
+          break;
+        } else {
+          if (cellY > enemycell -> GetY()) {
+            enemycell -> MoveDown();
+            break;
+          } else if (cellY < enemycell -> GetY()) {
+            enemycell -> MoveUp();
+            break;
+          }
+        }
+      case 2:
+        if (cellY < enemycell -> GetY()) {
+          enemycell -> MoveDown();
+          break;
+        } else if (cellY > enemycell -> GetY()) {
+          enemycell -> MoveUp();
+          break;
+        } else {
+          if (cellX < enemycell -> GetX()) {
+            enemycell -> MoveRight();
+            break;
+          } else if (cellX > enemycell -> GetX()) {
+            enemycell -> MoveLeft();
+            break;
+          }
+        }
+      }
+    }
 
-                case 's':
-                    player.TurnDown();
-                    break;
+    if ((cellX == enemycell -> GetX()) && (enemycell -> GetY() == cellY)) {
+      LIVES = 0;
+    }
 
-                case 'a':
-                    player.TurnLeft();
-                    break;
+    enemycell -> DrawEnemy();
+  }
+};
 
-                case 'd':
-                    player.TurnRight();
-                    break;
-            }
-            player.Move();
+int main() {
+  cout << "[PRESS wsad TO START GAME]";
+  Player player;
+  Enemy enemy, enee;
+  char op = 'l';
+  do {
+    if (!LIVES) {
+      system("cls");
+      cout << "[GAMEOVER]";
+      Sleep(3000);
+      cout << "[3..]";
+      Sleep(1000);
+      cout << "[2..]";
+      Sleep(1000);
+      cout << "[1..]";
+      Sleep(1000);
+      system("cls");
+      cout << "[PRESS wsad TO START GAME]";
+      LIVES = 3;
+    }
+    if (kbhit()) {
+      op = getch();
 
-            enemy.EnemyMove(player.getXs(), player.getYs());
-            enee.EnemyMove(player.getXs(), player.getYs());
-		}
+      switch (op) {
+      case 'w':
+        player.TurnUp();
+        break;
 
-	}
-	while(op != 'e');
+      case 's':
+        player.TurnDown();
+        break;
 
-	return 0;
+      case 'a':
+        player.TurnLeft();
+        break;
+
+      case 'd':
+        player.TurnRight();
+        break;
+      }
+      player.Move();
+
+      enemy.EnemyMove(player.getXs(), player.getYs());
+      enee.EnemyMove(player.getXs(), player.getYs());
+    }
+
+  }
+  while (op != 'e');
+
+  return 0;
 }
