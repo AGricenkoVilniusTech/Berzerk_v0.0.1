@@ -29,10 +29,6 @@ class Point {
     this -> x = x;
     this -> y = y;
   }
-  void SetPoint(int x, int y) {
-    this -> x = x;
-    this -> y = y;
-  }
   int GetX() {
     return x;
   }
@@ -67,10 +63,7 @@ class Point {
     }
     x++;
   }
-  void DrawMoob() {
-    CursorPositionas(x, y);
-    cout << "*";
-  }
+
   void DrawPlayer() {
     CursorPositionas(x, y);
     cout << "o";
