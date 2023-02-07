@@ -119,6 +119,12 @@ class Player {
   public: Player() {
     cell = new Point(10, 10);
   }
+ class Gamer {
+ private: Point * cell;
+  char dir;
+  public: Player() {
+    cell = new Point(10, 10);
+ }
 
   void TurnUp() {
     dir = 'w';
