@@ -10,8 +10,8 @@ using namespace std;
 
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 COORD CursorPosition;
-int LIVES = 3;
-bool lvl = 1;
+int LIVES = 8;
+bool lvl = 2;
 
 void CursorPositionas(int x, int y) {
   CursorPosition.X = x;
@@ -23,7 +23,7 @@ class Point {
   private: int x;
   int y;
   public: Point() {
-    x = y = 10;
+    x = y = 155;
   }
   Point(int x, int y) {
     this -> x = x;
