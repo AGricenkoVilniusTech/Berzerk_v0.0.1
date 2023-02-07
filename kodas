@@ -134,8 +134,10 @@ class Player {
   }
   void Move() {
     system("cls");
+    printf("Takes 10 sec and exit.\n");   // Delay the program execution 
+    delay(10000);// for 1 second
 
-    switch (dir) {
+switch (dir) {
     case 'w':
       cell -> MoveUp();
       break;
